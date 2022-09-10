@@ -1,4 +1,6 @@
-on: [push, pull_request]
+"on":
+  - push
+  - pull_request
 name: Test
 jobs:
   npmCi:
@@ -8,7 +10,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: 10.x
+          node-version: lts/*
       - run: npm ci
       - run: npm run routes:lint
       - run: npm run lint
