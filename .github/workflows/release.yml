@@ -1,4 +1,4 @@
-on:
+"on":
   push:
     branches:
       - master
@@ -12,13 +12,11 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: lts/*
       - run: npm ci
       - run: npm run build
       - run: ls dist/
       - run: npx semantic-release --debug
         env:
-          # we use a Personal Access Token instead of the provided
-          # GITHUB_TOKEN in order to get the release.yml workflow triggered
           GITHUB_TOKEN: ${{ secrets.OCTOKITBOT_PAT_FOR_SEMANTIC_RELEASE }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
